@@ -1,0 +1,378 @@
+1. Отрезок [a, b] разбит точками на n равных частей (интервалов). В каждой точке
+вычисляется значение некоторой функции.
+a. Определить точку, в которой функция достигает максимального значения.
+b. Определить количество точек, лежащих внутри заданной области.
+c. Определить точку, в которой значение функция менее всего отличается от
+среднего значения.
+d. Определить крайнюю левую точку, в которой функция получает отрицательное
+значение.
+e. Определить количество интервалов, на которых функция меняет знак.
+f. Определить, является ли функция возрастающей. 
+program Project1;
+{$codepage utf8}
+var
+  n,i:integer;
+  a,b,max,maxi,h,x,y:double;
+ //f(x)=x^2
+
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ writeln('n:');
+ readln(n);
+ x:=a;
+ i:=1;
+ max:=a;
+ maxi:=1;
+ h:=(b-a)/n;
+ //a. Определить точку, в которой функция достигает максимального значения.
+ while (x<=b) do
+ begin
+    y:=x*x;
+    if y>max then
+    begin
+    max:=y;
+    maxi:=i;
+    end;
+    i:=i+1;
+    x:=x+h;
+ end;
+ writeln('Значение: ', max, 'Номер точки: ', maxi);
+ readln;
+end. 
+program Project1;
+{$codepage utf8}
+var
+  n,i:integer;
+  a,b,h,x,y:double;
+ //f(x)=x^2 (y>50)
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ writeln('n:');
+ readln(n);
+ x:=a;
+ i:=0;
+ h:=(b-a)/n;
+ //b. Определить количество точек, лежащих внутри заданной области.
+ while (x<=b) do
+ begin
+    y:=x*x;
+    if y>50 then
+    begin
+    i:=i+1;
+    end;
+    x:=x+h;
+    writeln(y:0:0);
+ end;
+ writeln('Кол-во точек y>50: ', i:0);
+ readln;
+end. 
+program Project1;
+{$codepage utf8}
+var
+  n,i:integer;
+  a,b,h,x,y,avg,z,c,m:double;
+ //f(x)=x^2 (y>50)
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ writeln('n:');
+ readln(n);
+ x:=a;
+ h:=(b-a)/n;
+ i:=1;
+ avg:=0;
+ //c. Определить точку, в которой значение функция менее всего отличается от среднего значения
+ while (x<=b) do
+ begin
+    y:=x*x;
+    writeln(y:6:6);
+    avg:=avg+y;
+    x:=x+h;
+ end;
+ avg:=avg/(n+1);
+ m:=avg;
+ x:=a;
+ while (x<=b) do
+ begin
+    y:=x*x;
+    if abs(avg-y)<m then
+    begin
+      m:=abs(avg-y);
+      c:=y;
+      z:=i;
+    end;
+    x:=x+h;
+    i:=i+1;
+ end;
+ writeln('Значение, ближайшее к среднему: ', c:6:6);
+ writeln('Индекс значения: ', z:0:0);
+ writeln('Среднее значение: ', avg:6:6);
+ readln;
+end.         
+                
+program Project1;
+{$codepage utf8}
+var
+  n,i:integer;
+  a,b,h,x,y:double;
+ //f(x)=x^3
+
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ writeln('n:');
+ readln(n);
+ h:=(b-a)/n;
+ x:=a-h;
+
+ y:=0;
+ i:=0;
+ //d. Определить крайнюю левую точку, в которой функция получает отрицательное значение.
+   repeat
+    i:=i+1;
+    x:=x+h;
+    y:=x*x*x;
+    writeln(y);
+   until (x>=b) or (y<0);
+
+ if y<0 then
+ begin
+ writeln('Значение, ближайшее к среднему: ', y:6:6);
+ writeln('Индекс значения: ', i:6);
+ end;
+
+ if y>=0 then
+ begin
+ writeln('Все значения функции неотрицательные');
+ end;
+ readln;
+end. 
+program Project1;
+{$codepage utf8}
+var
+  n,i:integer;
+  a,b,h,x,y,y2:double;
+ //f(x)=x^3
+
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ writeln('n:');
+ readln(n);
+ h:=(b-a)/n;
+ x:=a;
+ i:=0;
+ y2:=0;
+
+ //e. Определить количество интервалов, на которых функция меняет знак.
+   while x<=b do
+    begin
+    y:=x*x;
+    writeln(y);
+    if (y2<0) and (y>=0) or (y2>0) and (y<=0)then
+    i:=i+1;
+    x:=x+h;
+    y2:=y;
+    end;
+
+
+ writeln('Кол-во раз, когда функция меняет знак: ', i:6);
+     readln;
+end. 
+program Project1;
+{$codepage utf8}
+var
+  n,i:integer;
+  a,b,h,x,y,max:double;
+ //f(x)=1-x
+
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ writeln('n:');
+ readln(n);
+ h:=(b-a)/n;
+ x:=a;
+ i:=0;
+ max:=b*b;
+ y:=max-1;
+ //f. Определить, является ли функция возрастающей.
+   while (x<=b) and (max>y) do
+    begin
+    y:=x*x;
+    writeln(y);
+    i:=i+1;
+    writeln(i);
+    x:=x+h;
+    end;
+
+ if x>=b then
+ writeln('Функция является возрастающей')
+ else writeln('Функция не является возрастающей');
+readln;
+end.   
+2. Вычисление суммы (произведения) бесконечного ряда при помощи итерационного
+процесса (см. лабораторную работу №5).
+// Лабораторная работа №5, вариант 8
+// Выполнил: ст. гр. 848 Федотов М.Ф.
+// Проверил: доц. каф. КТ Наумов Д.А.
+// Дата написания: 27 ноября 2019
+
+program Project1;
+
+const
+DIGITS = 5;
+EPS = 1e-4;
+MAX_ITER = 100;
+
+var
+n: integer;
+f: extended;
+s: extended;
+x: extended;
+
+begin
+
+repeat
+write('input x x<-1:');
+readln(x);
+until (x<-1);
+
+writeln('source data for calculation');
+writeln(' value of x = ', x:0:DIGITS);
+writeln(' error is = ', eps:0:DIGITS);
+writeln(' max iteration count = ', MAX_ITER);
+
+n := 0;
+f := -1/x;
+s := -pi/2+f;
+repeat
+n := n + 1;
+f := -f/(x*x);
+s := s+f/(2*n+1);
+until
+(abs(f) < EPS) or (n > MAX_ITER);
+writeln('calculation results');
+writeln(' sum of series = ', s:0:DIGITS);
+writeln(' iteration count = ', n);
+writeln(' arctg(x) = ', arctan(x):0:DIGITS);
+readln;
+end.                                          
+3. Для целых чисел из отрезка [a, b]:
+a. Определить сумму (произведение) цифр всех простых чисел.
+b. Найти наименьшее общее кратное (наибольший общий делитель) чисел.
+c. Найти произведение чисел, не содержащих в десятичной (восьмеричной,
+шестнадцатеричной) записи заданной цифры.
+ 
+program Project1;
+{$codepage utf8}
+var
+  a,b,m:integer;
+  sum,z:double;
+
+
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ sum:=0;
+ //pr:=1;
+ z:=a;
+ //a. Определить сумму (произведение) всех простых чисел.
+   while(a<=b) do
+
+   begin
+    m:=a-1;
+    z:=a;
+    while (m>1) and (z<>0) do
+
+    begin
+    writeln(a,' mod ', m);
+    z:=a mod m;
+    m:=m-1;
+    end;
+
+    if (m=1) then
+    begin
+    sum:=sum+a;
+    //pr:=pr*a;
+    writeln('Простое:', a);
+    end;
+
+    a:=a+1;
+    end;
+
+    writeln(sum:6:6);
+readln;
+end. 
+program Project1;
+{$codepage utf8}
+var
+  i,a,b,nod,nok,ia,ib,ba:integer;
+begin
+ writeln('a:(a<b)');
+ readln(a);
+ writeln('b:(b>a)');
+ readln(b);
+ nok:=0;
+ nod:=0;
+ i:=b;
+ //b. Найти наименьшее общее кратное чисел.
+   while(nok=0) do
+    begin
+    ia:= i mod a;
+    ib:= i mod b;
+    if (ia = 0) and (ib = 0) then
+    nok:=i;
+    i:=i+1;
+    end;
+writeln('НОК: ',nok:6);
+ //(наибольший общий делитель)
+    while(b mod a <> 0) do
+     begin
+      i:=a;
+      a := b mod a;
+      b := i;
+      nod := a;
+      writeln(b, ' del ', a);
+     end;
+writeln('НОД: ',nod:6);
+readln;
+end. 
+program Project1;
+{$codepage utf8}
+var
+  a,b,c,ai,ci,pr:integer;
+begin
+ writeln('a:');
+ readln(a);
+ writeln('b:');
+ readln(b);
+ writeln('Цифра:');
+ readln(c);
+ pr:=1;
+ //c. Найти произведение ЦИФР, не содержащих в десятичной записи заданной цифры. (для чисел [1;9])
+   while(a<=b) do
+    begin
+    if (a<>c) then
+    pr:=pr*a;
+    a:=a+1;
+    end;
+writeln('Произведение: ',pr:6);
+readln;
+end.             
